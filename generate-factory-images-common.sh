@@ -159,6 +159,8 @@ EOF
 fi
 cat >> tmp/$PRODUCT-$VERSION/flash-all.sh << EOF
 fastboot --skip-reboot update image-$PRODUCT-$VERSION.zip
+fastboot reboot-bootloader
+sleep $SLEEPDURATION
 EOF
 chmod a+x tmp/$PRODUCT-$VERSION/flash-all.sh
 
@@ -234,6 +236,8 @@ EOF
 fi
 cat >> tmp/$PRODUCT-$VERSION/flash-all.bat << EOF
 fastboot --skip-reboot update image-$PRODUCT-$VERSION.zip
+fastboot reboot-bootloader
+ping -n $SLEEPDURATION 127.0.0.1 >nul
 
 echo Press any key to exit...
 pause >nul
